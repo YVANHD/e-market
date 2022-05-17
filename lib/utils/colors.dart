@@ -6,7 +6,7 @@ class AppColors {
 
   static const Color iconColor1 = Colors.orange;
   static const Color iconColor2 = Colors.red;
-  static const Color buttonBackgrounColor = Colors.grey;
+  static const Color bottonBackgrounColor = Color.fromARGB(255, 228, 215, 215);
   static const Color signColor = Colors.white60;
   static const Color titleColor = Colors.black;
   static const Color mainBlackColor = Colors.black;
