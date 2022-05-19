@@ -102,7 +102,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       color: Colors.white38,
                       image: DecorationImage(
                         image: AssetImage(
-                          "assets/images/06.png",
+                          "assets/images/sucrés.png",
                         ),
                         fit: BoxFit.cover
                       )
@@ -201,7 +201,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             image: DecorationImage(
               fit: BoxFit.cover,
               image: AssetImage(
-                "assets/images/05.png",
+                "assets/images/sucrés.png",
               )
             ),
           ),

@@ -1,9 +1,12 @@
+import 'package:ecommerce/pages/cart/cartPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'pages/food/recommended_food_detail.dart';
+import 'helpers/dependencies.dart' as dep;
 
-void main() {
+ void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dep.init();
   runApp(const MyApp());
 }
 
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const RecommendedFoodDetail(),
+      home: const CartPage(),
     );
   }
 }
