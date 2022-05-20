@@ -24,6 +24,7 @@ class SignInPage extends StatelessWidget {
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(height: Dimensions.screenHeight*0.05),
             Container(
@@ -32,7 +33,7 @@ class SignInPage extends StatelessWidget {
                 radius: 80,
                 backgroundColor: Colors.white,
                 backgroundImage: AssetImage(
-                  "assets/image/avatar.png"
+                  "assets/images/avatar.png"
                 ),
               ),
             ),
@@ -40,6 +41,7 @@ class SignInPage extends StatelessWidget {
               margin: EdgeInsets.only(left: Dimensions.width20),
               width: double.maxFinite,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Bonjour",
@@ -58,20 +60,37 @@ class SignInPage extends StatelessWidget {
                 ],
               ),
             ),
+             SizedBox(height: Dimensions.height20),
             // phone
             AppTextField(
               textController: phoneController, 
               hinText: "Phone", 
-              icon: Icons.email
+              icon: Icons.phone
             ),
             SizedBox(height: Dimensions.height20),
             // password
             AppTextField(
               textController: passwordController, 
               hinText: "Mot de passe", 
-              icon: Icons.email
+              icon: Icons.password
             ),
-            SizedBox(height: Dimensions.height20),
+            SizedBox(height: Dimensions.height10),
+            Row(
+              children:[
+                Expanded(child: Container()),
+                RichText(
+                  text: TextSpan(
+                    text: "Connectez-vous à votre compte ? ",
+                    style: TextStyle(
+                      color: Colors.grey.shade500,
+                      fontSize: Dimensions.font20
+                    ),
+                  ),
+                ),
+                SizedBox(height: Dimensions.width20),
+              ]
+            ),
+            SizedBox(height: Dimensions.screenHeight*0.05),
           // bouton inscription
             Container(
               width: Dimensions.screenWidth/2,
@@ -82,7 +101,7 @@ class SignInPage extends StatelessWidget {
               ),
               child: Center(
                 child: BigText(
-                  text: "Inscription", 
+                  text: "Connexion", 
                   size: Dimensions.font20 + Dimensions.font20/2,
                   color: Colors.white,
                 ),
@@ -93,7 +112,7 @@ class SignInPage extends StatelessWidget {
             // options inscription
             RichText(
               text: TextSpan(
-                text: "aucun compte ? ",
+                text: "Aucun Compte ? ",
                 style: TextStyle(
                   color: Colors.grey.shade500,
                   fontSize: Dimensions.font20
@@ -101,7 +120,7 @@ class SignInPage extends StatelessWidget {
                 children: [
                   TextSpan(
                     recognizer: TapGestureRecognizer()..onTap=() => Get.to(()=> SignUpPage(), transition: Transition.fade),
-                    text: "créer",
+                    text: "Créer en Un",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: Dimensions.font20,

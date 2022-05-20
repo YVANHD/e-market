@@ -1,8 +1,9 @@
-import 'package:ecommerce/pages/cart/cartPage.dart';
+import 'package:ecommerce/pages/account/accountPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'helpers/dependencies.dart' as dep;
+import 'pages/auth/sign_up_page.dart';
 
  void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CartPage(),
+      home: const SignUpPage(),
     );
   }
 }

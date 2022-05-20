@@ -40,71 +40,59 @@ class AccountPage extends StatelessWidget {
                 backgroundColor: AppColors.mainColor,
                 iconColor: Colors.white,
                 iconSize: Dimensions.height10*5/2,
-                size: Dimensions.height15*10,
+                size: Dimensions.height15*4,
               ), 
               bigText: BigText(text: "Yvan",)
             ),
-            SizedBox(height: Dimensions.height30,),
+            SizedBox(height: Dimensions.height15,),
             //phone
             AccountWidget(
               appIcon: AppIcon(
-                icon: Icons.person,
-                backgroundColor: AppColors.mainColor,
+                icon: Icons.phone,
+                backgroundColor: AppColors.yellowColor,
                 iconColor: Colors.white,
                 iconSize: Dimensions.height10*5/2,
-                size: Dimensions.height15*10,
+                size: Dimensions.height15*4,
               ), 
               bigText: BigText(text: "6 52 15 32 90",)
             ),
-            SizedBox(height: Dimensions.height30,),
+            SizedBox(height: Dimensions.height15,),
             //email
             AccountWidget(
               appIcon: AppIcon(
-                icon: Icons.person,
-                backgroundColor: AppColors.mainColor,
+                icon: Icons.email,
+                backgroundColor: AppColors.yellowColor,
                 iconColor: Colors.white,
                 iconSize: Dimensions.height10*5/2,
-                size: Dimensions.height15*10,
+                size: Dimensions.height15*4,
               ), 
               bigText: BigText(text: "yvanmvondo2@gmail.com",)
             ),
-            SizedBox(height: Dimensions.height30,),
+            SizedBox(height: Dimensions.height15,),
             //addresse
             AccountWidget(
               appIcon: AppIcon(
-                icon: Icons.person,
+                icon: Icons.location_on,
                 backgroundColor: AppColors.mainColor,
                 iconColor: Colors.white,
                 iconSize: Dimensions.height10*5/2,
-                size: Dimensions.height15*10,
+                size: Dimensions.height15*4,
               ), 
-              bigText: BigText(text: "Cameroun Yaounde",)
+              bigText: BigText(text: "Modifier votre adresse",)
             ),
-            SizedBox(height: Dimensions.height30,),
-            // other
+            SizedBox(height: Dimensions.height15,),
+            //addresse
             AccountWidget(
               appIcon: AppIcon(
-                icon: Icons.person,
+                icon: Icons.settings,
                 backgroundColor: AppColors.mainColor,
                 iconColor: Colors.white,
                 iconSize: Dimensions.height10*5/2,
-                size: Dimensions.height15*10,
-              ), 
-              bigText: BigText(text: "Autres",)
-            ),
-            SizedBox(height: Dimensions.height30,),
-            // Parametres
-            AccountWidget(
-              appIcon: AppIcon(
-                icon: Icons.person,
-                backgroundColor: AppColors.mainColor,
-                iconColor: Colors.white,
-                iconSize: Dimensions.height10*5/2,
-                size: Dimensions.height15*10,
+                size: Dimensions.height15*4,
               ), 
               bigText: BigText(text: "Parametres",)
             ),
-            SizedBox(height: Dimensions.height30,),
+            SizedBox(height: Dimensions.height15,),
             Column()
           ],
         ),
