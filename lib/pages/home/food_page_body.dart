@@ -1,4 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:ecommerce/pages/food/popular_food_detail.dart';
+import 'package:ecommerce/pages/food/recommended_food_detail.dart';
+import 'package:ecommerce/routes/route_helper.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/dimensions.dart';
 import 'package:ecommerce/widget/app_column.dart';
@@ -6,6 +9,7 @@ import 'package:ecommerce/widget/big_text.dart';
 import 'package:ecommerce/widget/icons_and_text_widgets.dart';
 import 'package:ecommerce/widget/small_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({Key? key}) : super(key: key);
@@ -16,7 +20,9 @@ class FoodPageBody extends StatefulWidget {
 
 class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.89);
+  PageController popController = PageController(viewportFraction: 0.89);
   var _currentPageValue = 0.0;
+  var _currentPageVal = 0.0;
   double _scaleFactor = 0.8;
   double height = Dimensions.pageViewContainer;
 
@@ -26,6 +32,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     pageController.addListener(() {
       setState(() {
         _currentPageValue = pageController.page!;
+        _currentPageVal = popController.page!;
         print("la valeur courante est " + _currentPageValue.toString());
       });
     });
@@ -34,12 +41,41 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   @override
   void dispose() {
     pageController.dispose();
-    // super.dispose();
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
+      // produits categorisés
+        BigText(text: "Nos Brochettes"),
+        SizedBox(height: Dimensions.height10,),
+        Container(
+          height: Dimensions.pageView,
+          // color: Colors.redAccent,
+          child: PageView.builder(
+            controller: popController,
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              return _buildPageItem(index);
+            }
+          ),
+        ),
+        new DotsIndicator(
+          dotsCount: 5,
+          position: _currentPageVal,
+          decorator: DotsDecorator(
+            activeColor: AppColors.mainColor,
+            size: const Size.square(9.0),
+            activeSize: const Size(18.0, 9.0),
+            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          ),
+        ),
+        SizedBox(height: Dimensions.height30),
+        // produits categorisés
+        BigText(text: "Nos appéro gourmandes"),
+        SizedBox(height: Dimensions.height10,),
         Container(
           height: Dimensions.pageView,
           // color: Colors.redAccent,
@@ -62,12 +98,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           ),
         ),
         SizedBox(height: Dimensions.height30),
+// produits recommendés
         Container(
           margin: EdgeInsets.only(left: Dimensions.width30),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              BigText(text: "Populaire"),
+              BigText(text: "Recommendés"),
               SizedBox(width: Dimensions.width10,),
               Container(
                 margin: EdgeInsets.only(bottom: 3),
@@ -76,90 +113,146 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               SizedBox(width: Dimensions.width10,),
               Container(
                 margin: EdgeInsets.only(bottom: 2),
-                child: SmallText(text: "Les plus sélectionnés..."),
+                child: SmallText(text: "Les plus Recommendés..."),
               ),
             ],
           ),
         ),
         // liste de plats
         Container(
-          height: 1000,
+          height: 600,
           child: ListView.builder(
             shrinkWrap: true,
              physics: const BouncingScrollPhysics(),
           itemCount: 8,
           itemBuilder: (context, index) {
-            return Container(
-              margin: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height10),
-              child: Row(
-                children: [
-                  // image section
-                  Container(
-                    width: Dimensions.listViewImgSize,
-                    height: Dimensions.listViewImgSize,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius20),
-                      color: Colors.white38,
-                      image: DecorationImage(
-                        image: AssetImage(
-                          "assets/images/sucrés.png",
-                        ),
-                        fit: BoxFit.cover
-                      )
-                    ),
-                  ),
-                  // icon and text section
-                  Expanded(
-                    child: Container(
-                      height: Dimensions.listViewTextSize,
+            return GestureDetector(
+              onTap: () {
+                Get.toNamed(RouteHelper.recommendedFood);
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height10),
+                child: Row(
+                  children: [
+                    // image section
+                    Container(
+                      width: Dimensions.listViewImgSize,
+                      height: Dimensions.listViewImgSize,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(Dimensions.radius20),
-                          bottomRight: Radius.circular(Dimensions.radius20)
-                        ),
-                        color: Colors.white
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          left: Dimensions.width10,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                          BigText(
-                            text: "Brochettes de porc",
-                            size: 15,
+                        borderRadius: BorderRadius.circular(Dimensions.radius20),
+                        color: Colors.white38,
+                        image: DecorationImage(
+                          image: AssetImage(
+                            "assets/images/sucrés.png",
                           ),
-                          SizedBox(height: Dimensions.height10),
-                          SmallText(text: "lorem ipsum dolore solar"),
-                          SizedBox(height: Dimensions.height10),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                IconsAndTextWidgets(
-                                  icon: Icons.numbers_sharp,
-                                  text: "à partir de 25 pieces", 
-                                  iconColor: AppColors.iconColor1,
-                                ),
-                                IconsAndTextWidgets(
-                                  icon: Icons.money_off, 
-                                  text: "600", 
-                                  iconColor: AppColors.mainColor,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                          fit: BoxFit.cover
+                        )
                       ),
                     ),
-                  )
-                ],
+                    // icon and text section
+                    Expanded(
+                      child: Container(
+                        height: Dimensions.listViewTextSize,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(Dimensions.radius20),
+                            bottomRight: Radius.circular(Dimensions.radius20)
+                          ),
+                          color: Colors.white
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            left: Dimensions.width10,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                            BigText(
+                              text: "Brochettes de porc",
+                              size: 15,
+                            ),
+                            SizedBox(height: Dimensions.height10),
+                            SmallText(text: "lorem ipsum dolore solar"),
+                            SizedBox(height: Dimensions.height10),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconsAndTextWidgets(
+                                    icon: Icons.numbers_sharp,
+                                    text: "à partir de 25 pieces", 
+                                    iconColor: AppColors.iconColor1,
+                                  ),
+                                  IconsAndTextWidgets(
+                                    icon: Icons.money_off, 
+                                    text: "600", 
+                                    iconColor: AppColors.mainColor,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             );
           }
             ),
-        )
+        ),
+        SizedBox(height: Dimensions.height10,),
+              // produits categorisés
+        BigText(text: "NOS VERRINES SUCRÉS "),
+        SizedBox(height: Dimensions.height10,),
+        Container(
+          height: Dimensions.pageView,
+          // color: Colors.redAccent,
+          child: PageView.builder(
+            controller: popController,
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              return _buildPageItem(index);
+            }
+          ),
+        ),
+        new DotsIndicator(
+          dotsCount: 5,
+          position: _currentPageVal,
+          decorator: DotsDecorator(
+            activeColor: AppColors.mainColor,
+            size: const Size.square(9.0),
+            activeSize: const Size(18.0, 9.0),
+            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          ),
+        ),
+
+                SizedBox(height: Dimensions.height10,),
+              // cookies
+        BigText(text: "NOS COOKIES "),
+        SizedBox(height: Dimensions.height10,),
+        Container(
+          height: Dimensions.pageView,
+          // color: Colors.redAccent,
+          child: PageView.builder(
+            controller: popController,
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              return _buildPageItem(index);
+            }
+          ),
+        ),
+        new DotsIndicator(
+          dotsCount: 5,
+          position: _currentPageVal,
+          decorator: DotsDecorator(
+            activeColor: AppColors.mainColor,
+            size: const Size.square(9.0),
+            activeSize: const Size(18.0, 9.0),
+            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          ),
+        ),
       ],
     );
   }
@@ -189,56 +282,61 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
     }
 
-    return  Stack(
-      children: [
-        Container(
-          
-          height: Dimensions.pageViewContainer,
-          margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(Dimensions.radius30),
-            color: index.isEven?Colors.blue : Colors.black,
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage(
-                "assets/images/sucrés.png",
-              )
-            ),
-          ),
-        ),
-        SizedBox(height: 20,),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            height: Dimensions.pageViewTextController,
-            margin: EdgeInsets.only(left: Dimensions.width30, right: Dimensions.width30, bottom: Dimensions.height30),
+    return  GestureDetector(
+      onTap: () {
+        Get.toNamed(RouteHelper.popularFood);
+      },
+      child: Stack(
+        children: [
+          Container(
+            
+            height: Dimensions.pageViewContainer,
+            margin: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(Dimensions.radius30),
-              color: Color(0xFFe8e8e8),
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0xFFe8e8e8),
-                  blurRadius: 5,
-                  offset: Offset(0, 5),
-                ),
-                BoxShadow(
-                  color: Colors.white,
-                  offset: Offset(-5, 0),
-                ),
-                BoxShadow(
-                  color: Colors.white,
-                  offset: Offset(5, 0),
-                ),
-              ]
-    
-            ),
-            child: Container(
-              padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.height15, right: Dimensions.height15),
-              child: AppColumn(text: "Brochettes de porc"),
+              color: index.isEven?Colors.blue : Colors.black,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(
+                  "assets/images/sucrés.png",
+                )
+              ),
             ),
           ),
-        ),
-      ]
+          SizedBox(height: 20,),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: Dimensions.pageViewTextController,
+              margin: EdgeInsets.only(left: Dimensions.width30, right: Dimensions.width30, bottom: Dimensions.height30),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius30),
+                color: Color(0xFFe8e8e8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xFFe8e8e8),
+                    blurRadius: 5,
+                    offset: Offset(0, 5),
+                  ),
+                  BoxShadow(
+                    color: Colors.white,
+                    offset: Offset(-5, 0),
+                  ),
+                  BoxShadow(
+                    color: Colors.white,
+                    offset: Offset(5, 0),
+                  ),
+                ]
+      
+              ),
+              child: Container(
+                padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.height15, right: Dimensions.height15),
+                child: AppColumn(text: "Brochettes de porc"),
+              ),
+            ),
+          ),
+        ]
+      ),
     );
   }
 }

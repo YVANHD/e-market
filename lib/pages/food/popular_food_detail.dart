@@ -1,3 +1,5 @@
+import 'package:ecommerce/pages/home/main_food_page.dart';
+import 'package:ecommerce/routes/route_helper.dart';
 import 'package:ecommerce/utils/appIcon.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/dimensions.dart';
@@ -6,6 +8,7 @@ import 'package:ecommerce/widget/big_text.dart';
 import 'package:ecommerce/widget/expandable_text_widget.dart';
 import 'package:ecommerce/widget/small_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class PopularFoodDetail extends StatelessWidget {
@@ -41,8 +44,18 @@ class PopularFoodDetail extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.arrow_back),
-                AppIcon(icon: Icons.shopping_cart_outlined)
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: AppIcon(icon: Icons.arrow_back)
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Get.toNamed(RouteHelper.cartPage);
+                  },
+                  child: AppIcon(icon: Icons.shopping_cart_outlined)
+                )
               ],
             )
           ),

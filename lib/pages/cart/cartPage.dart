@@ -1,9 +1,11 @@
+import 'package:ecommerce/routes/route_helper.dart';
 import 'package:ecommerce/utils/appIcon.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/dimensions.dart';
 import 'package:ecommerce/widget/big_text.dart';
 import 'package:ecommerce/widget/small_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -20,24 +22,36 @@ class CartPage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(
-                  icon: Icons.arrow_back,
-                  iconColor: Colors.white,
-                  backgroundColor: AppColors.mainColor,
-                  iconSize: Dimensions.iconSize24
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: AppIcon(
+                    icon: Icons.arrow_back,
+                    iconColor: Colors.white,
+                    backgroundColor: AppColors.mainColor,
+                    iconSize: Dimensions.iconSize24
+                  ),
                 ),
                 SizedBox(width: Dimensions.width20*5 ),
-               AppIcon(
-                  icon: Icons.home_outlined,
-                  iconColor: Colors.white,
-                  backgroundColor: AppColors.mainColor,
-                  iconSize: Dimensions.iconSize24
-                ),
-                AppIcon(
-                  icon: Icons.shopping_cart,
-                  iconColor: Colors.white,
-                  backgroundColor: AppColors.mainColor,
-                  iconSize: Dimensions.iconSize24
+               GestureDetector(
+                 onTap: (){
+                    Get.toNamed(RouteHelper.getInitial());
+                  },
+                 child: AppIcon(
+                    icon: Icons.home_outlined,
+                    iconColor: Colors.white,
+                    backgroundColor: AppColors.mainColor,
+                    iconSize: Dimensions.iconSize24
+                  ),
+               ),
+                GestureDetector(
+                  child: AppIcon(
+                    icon: Icons.shopping_cart,
+                    iconColor: Colors.white,
+                    backgroundColor: AppColors.mainColor,
+                    iconSize: Dimensions.iconSize24
+                  ),
                 ),
               ],
             )
@@ -48,13 +62,13 @@ class CartPage extends StatelessWidget {
             right: Dimensions.width20,
             bottom: 0,
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: Dimensions.height15),
+              //margin: EdgeInsets.symmetric(horizontal: Dimensions.height10/2),
               //color: Colors.blueAccent,
               child: MediaQuery.removePadding(
                 context: context,
                 child: ListView.builder(
                   physics: BouncingScrollPhysics(),
-                  itemCount: 10,
+                  itemCount: 8,
                   itemBuilder: (_, index) {
                     return Container(
                       width: double.maxFinite,
@@ -90,15 +104,17 @@ class CartPage extends StatelessWidget {
                                       Container(
                                         padding: EdgeInsets.symmetric(vertical: Dimensions.height10, horizontal: Dimensions.height10),
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(Dimensions.radius20),
+                                          borderRadius: BorderRadius.circular(Dimensions.radius20/2),
                                           color: Colors.white,
                                         ),
                                         child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Icon(Icons.remove, color: AppColors.mainBlackColor,),
-                                            SizedBox(width: Dimensions.width10/2,),
-                                            BigText(text: "0"),
-                                            SizedBox(width: Dimensions.width10/2,),
+                                            SizedBox(width: Dimensions.width20/3,),
+                                            BigText(text: "25"),
+                                            SizedBox(width: Dimensions.width20/3,),
                                             Icon(Icons.add, color: AppColors.mainBlackColor,)
                                           ],
                                         ),

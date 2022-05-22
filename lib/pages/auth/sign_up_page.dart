@@ -54,7 +54,7 @@ class SignUpPage extends StatelessWidget {
 
         authController.registration(signupBody).then((status) {
           if(status.isSuccess) {
-            print("Succes")
+            print("Inscription Reussie");
           } else {
             showCustomSnackbar(status.message);
           }
