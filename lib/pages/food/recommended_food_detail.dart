@@ -9,8 +9,10 @@ import 'package:get/get.dart';
 class RecommendedFoodDetail extends StatelessWidget {
   const RecommendedFoodDetail({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
+         var data = Get.arguments;
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -51,7 +53,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 ),
                 child: Center(
                   child: BigText(
-                    text: "Brochettes de porc", 
+                    text: data["name"], 
                     size: Dimensions.font26
                   )
                 ),

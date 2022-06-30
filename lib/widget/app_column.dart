@@ -7,8 +7,16 @@ import 'package:flutter/material.dart';
 import 'small_text.dart';
 
 class AppColumn extends StatelessWidget {
-  final String text;
-  const AppColumn({Key? key, required this.text}) : super(key: key);
+  final String nameText;
+  final int number;
+  final int stars;
+  final int priceText;
+  const AppColumn({Key? key, 
+    required this.nameText, 
+    this.number = 25, 
+    required this.priceText,
+    this.stars = 5, 
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +24,14 @@ class AppColumn extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BigText(
-                    text: text,
+                    text: nameText,
                     size: 15,
                   ),
                   SizedBox(height: Dimensions.height10),
                   Row(
                     children: [
                       Wrap(
-                        children: List.generate(5, (index) {
+                        children: List.generate(stars, (index) {
                           return Icon(
                             Icons.star_border,
                             color: AppColors.mainColor,
@@ -36,7 +44,7 @@ class AppColumn extends StatelessWidget {
                       SizedBox(width: 10),
                       SmallText(text: "1287"),
                       SizedBox(width: 10),
-                      SmallText(text: "Jaime"),
+                      SmallText(text: "J'aime"),
                     ],
                   ),
                   SizedBox(height: Dimensions.height20),
@@ -45,12 +53,12 @@ class AppColumn extends StatelessWidget {
                     children: [
                       IconsAndTextWidgets(
                         icon: Icons.numbers_sharp,
-                        text: "à partir de 25 pieces", 
+                        text: "à partir de $number pieces", 
                         iconColor: AppColors.iconColor1,
                       ),
                       IconsAndTextWidgets(
                         icon: Icons.money_off_rounded, 
-                        text: "600", 
+                        text:" $priceText", 
                         iconColor: AppColors.mainColor,
                       ),
                     ],

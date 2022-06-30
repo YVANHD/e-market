@@ -1,0 +1,50 @@
+[
+    {
+      "category": "cakes",
+      "name":"Ultra moelleux chocolat",
+      "img": "images/cake.png",
+      "description":"Gateaux sucrés à base de farine, de sucre et d'autres ingrédients",
+      "price": "3500",
+      "piece": "3"
+    },
+    {
+    "category": "cakes",
+    "name":"Renverse à l'ananas caramelisé",
+    "img": "images/cake.png",
+    "description":"Gateaux sucrés à base de farine, de sucre et d'autres ingrédients",
+    "price": "4000",
+    "piece": "3"
+    },
+    {
+    "category": "cakes",
+    "name":"Ultra moelleux à l'orange",
+    "img": "images/cake.png",
+    "description":"Gateaux sucrés à base de farine, de sucre et d'autres ingrédients",
+    "price": "4000",
+    "piece": "3"
+    },
+    {
+    "category": "cakes",
+    "name":"Ultra moelleux au lemon",
+    "img": "images/cake.png",
+    "description":"Gateaux sucrés à base de farine, de sucre et d'autres ingrédients",
+    "price": "4000",
+    "piece": "3"
+    },
+    {
+    "category": "cakes",
+    "name":"Brownies",
+    "img": "images/cake.png",
+    "description":"Gateaux sucrés à base de farine, de sucre et d'autres ingrédients",
+    "price": "14000",
+    "piece": "12"
+    },
+    {
+    "category": "cakes",
+    "name":"Balis canelle caramelisé au fromage blanc",
+    "img": "images/cake.png",
+    "description":"Gateaux sucrés à base de farine, de sucre et d'autres ingrédients",
+    "price": "12000",
+    "piece": "1"
+    }
+  ]

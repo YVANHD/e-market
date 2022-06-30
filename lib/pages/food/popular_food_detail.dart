@@ -1,12 +1,9 @@
-import 'package:ecommerce/pages/home/main_food_page.dart';
 import 'package:ecommerce/routes/route_helper.dart';
 import 'package:ecommerce/utils/appIcon.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/dimensions.dart';
 import 'package:ecommerce/widget/app_column.dart';
 import 'package:ecommerce/widget/big_text.dart';
-import 'package:ecommerce/widget/expandable_text_widget.dart';
-import 'package:ecommerce/widget/small_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +27,7 @@ class PopularFoodDetail extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
-                    "assets/images/sucrés.png",
+                    Get.arguments['img'],
                   )
                 )
               )
@@ -77,14 +74,14 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppColumn(text: "Brochettes de porc"),
+                  AppColumn(nameText:  "fgdgf", priceText: 5, stars: 4),
                   SizedBox(height: Dimensions.height20),
-                  BigText(text: "Description"),
+                  BigText(text: "fgdfgdg"),
                   SizedBox(height: Dimensions.height20),
                   // expandable text widget
                   SingleChildScrollView(
                     // physics: BouncingScrollPhysics(),
-                    child: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "),
+                    child: Text("dfgdfgdfg"),
                   )
                 ],
               ),
@@ -128,7 +125,7 @@ class PopularFoodDetail extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(vertical: Dimensions.height20, horizontal: Dimensions.height20),
               child: BigText(
-                text: "600 \Fcfa | Ajouter", color: Colors.white,
+                text: "3500\Fcfa | Ajouter", color: Colors.white,
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),

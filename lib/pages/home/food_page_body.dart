@@ -1,6 +1,6 @@
+import 'dart:convert';
+
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:ecommerce/pages/food/popular_food_detail.dart';
-import 'package:ecommerce/pages/food/recommended_food_detail.dart';
 import 'package:ecommerce/routes/route_helper.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/dimensions.dart';
@@ -19,28 +19,45 @@ class FoodPageBody extends StatefulWidget {
 }
 
 class _FoodPageBodyState extends State<FoodPageBody> {
-  PageController pageController = PageController(viewportFraction: 0.89);
-  PageController popController = PageController(viewportFraction: 0.89);
-  var _currentPageValue = 0.0;
-  var _currentPageVal = 0.0;
+  List brochettes = [];
+  List cakes = [];
+
+  PageController brochetteController = PageController(viewportFraction: 0.89);
+  PageController cakeController = PageController(viewportFraction: 0.89);
+  var _currCakeValue = 0.0;
+  var _currBrochetteVal = 0.0;
   double _scaleFactor = 0.8;
   double height = Dimensions.pageViewContainer;
 
   @override
   void initState() {
+    _readData();
     super.initState();
-    pageController.addListener(() {
+    brochetteController.addListener(() {
       setState(() {
-        _currentPageValue = pageController.page!;
-        _currentPageVal = popController.page!;
-        print("la valeur courante est " + _currentPageValue.toString());
+        _currBrochetteVal = brochetteController.page!;
+        //print("la valeur courante est " + _currentPageValue.toString());
+      });
+    });
+  }
+
+  _readData() async {
+    await DefaultAssetBundle.of(context).loadString("json/brochettes.json").then((value) {
+      setState(() {
+        brochettes = json.decode(value);
+      });
+    });
+
+    await DefaultAssetBundle.of(context).loadString("json/cakes.json").then((value) {
+      setState(() {
+        cakes = json.decode(value);
       });
     });
   }
 
   @override
   void dispose() {
-    pageController.dispose();
+    brochetteController.dispose();
     super.dispose();
   }
   @override
@@ -51,20 +68,21 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       // produits categorisés
         BigText(text: "Nos Brochettes"),
         SizedBox(height: Dimensions.height10,),
-        Container(
+        SizedBox(
           height: Dimensions.pageView,
           // color: Colors.redAccent,
           child: PageView.builder(
-            controller: popController,
-            itemCount: 5,
+            controller: brochetteController,
+            itemCount: brochettes == null ? 0 : brochettes.length,
             itemBuilder: (context, index) {
-              return _buildPageItem(index);
+              return Container();
+              // _buildPageItem(index);
             }
           ),
         ),
-        new DotsIndicator(
-          dotsCount: 5,
-          position: _currentPageVal,
+        DotsIndicator(
+          dotsCount: brochettes.length,
+          position: _currBrochetteVal,
           decorator: DotsDecorator(
             activeColor: AppColors.mainColor,
             size: const Size.square(9.0),
@@ -72,39 +90,14 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
           ),
         ),
-        SizedBox(height: Dimensions.height30),
-        // produits categorisés
-        BigText(text: "Nos appéro gourmandes"),
-        SizedBox(height: Dimensions.height10,),
-        Container(
-          height: Dimensions.pageView,
-          // color: Colors.redAccent,
-          child: PageView.builder(
-            controller: pageController,
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return _buildPageItem(index);
-            }
-          ),
-        ),
-        new DotsIndicator(
-          dotsCount: 5,
-          position: _currentPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
-        SizedBox(height: Dimensions.height30),
+
 // produits recommendés
         Container(
           margin: EdgeInsets.only(left: Dimensions.width30),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              BigText(text: "Recommendés"),
+              BigText(text: "Nos Cakes"),
               SizedBox(width: Dimensions.width10,),
               Container(
                 margin: EdgeInsets.only(bottom: 3),
@@ -119,12 +112,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           ),
         ),
         // liste de plats
-        Container(
-          height: 600,
+        SizedBox(
+          height: 500,
           child: ListView.builder(
             shrinkWrap: true,
              physics: const BouncingScrollPhysics(),
-          itemCount: 8,
+          itemCount: cakes == null ? 0 : cakes.length,
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
@@ -143,7 +136,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         color: Colors.white38,
                         image: DecorationImage(
                           image: AssetImage(
-                            "assets/images/sucrés.png",
+                            cakes[index]["img"]
                           ),
                           fit: BoxFit.cover
                         )
@@ -169,23 +162,23 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                             BigText(
-                              text: "Brochettes de porc",
+                              text:   cakes[index]["name"],
                               size: 15,
                             ),
                             SizedBox(height: Dimensions.height10),
-                            SmallText(text: "lorem ipsum dolore solar"),
+                            SmallText(text:  cakes[index]["description"]),
                             SizedBox(height: Dimensions.height10),
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   IconsAndTextWidgets(
                                     icon: Icons.numbers_sharp,
-                                    text: "à partir de 25 pieces", 
+                                    text: "à partir de ${cakes[index]["piece"]} pieces", 
                                     iconColor: AppColors.iconColor1,
                                   ),
                                   IconsAndTextWidgets(
                                     icon: Icons.money_off, 
-                                    text: "600", 
+                                    text: cakes[index]["price"], 
                                     iconColor: AppColors.mainColor,
                                   ),
                                 ],
@@ -202,89 +195,51 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           }
             ),
         ),
-        SizedBox(height: Dimensions.height10,),
-              // produits categorisés
-        BigText(text: "NOS VERRINES SUCRÉS "),
-        SizedBox(height: Dimensions.height10,),
-        Container(
-          height: Dimensions.pageView,
-          // color: Colors.redAccent,
-          child: PageView.builder(
-            controller: popController,
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return _buildPageItem(index);
-            }
-          ),
-        ),
-        new DotsIndicator(
-          dotsCount: 5,
-          position: _currentPageVal,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
 
-                SizedBox(height: Dimensions.height10,),
-              // cookies
-        BigText(text: "NOS COOKIES "),
-        SizedBox(height: Dimensions.height10,),
-        Container(
-          height: Dimensions.pageView,
-          // color: Colors.redAccent,
-          child: PageView.builder(
-            controller: popController,
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return _buildPageItem(index);
-            }
-          ),
-        ),
-        new DotsIndicator(
-          dotsCount: 5,
-          position: _currentPageVal,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
       ],
     );
   }
   
   Widget _buildPageItem(int index) {
-    Matrix4 matrix = new Matrix4.identity();
-    if(index == _currentPageValue.floor()) {
-      var currentScale = 1-(_currentPageValue - index) + (1 - _scaleFactor);
-      var currTrans = height * (1-currentScale) / 2;
-      matrix = Matrix4.diagonal3Values(1, currentScale, 1)..setTranslationRaw(0, currentScale, 0);
+    // Matrix4 matrix = new Matrix4.identity();
+    // if(index == _currentPageValue.floor()) {
+    //   var currentScale = 1-(_currentPageValue - index) + (1 - _scaleFactor);
+    //   var currTrans = height * (1-currentScale) / 2;
+    //   matrix = Matrix4.diagonal3Values(1, currentScale, 1)..setTranslationRaw(0, currentScale, 0);
 
-    } else if(index == _currentPageValue.floor() + 1) {
-      var currentScale = _scaleFactor + (_currentPageValue - index + 1) + (1 - _scaleFactor);
-      var currTrans = height * (1-currentScale) / 2;
-      matrix = Matrix4.diagonal3Values(1, currentScale, 1);
-      matrix = Matrix4.diagonal3Values(1, currentScale, 1)..setTranslationRaw(0, currentScale, 0);
+    // } else if(index == _currentPageValue.floor() + 1) {
+    //   var currentScale = _scaleFactor + (_currentPageValue - index + 1) + (1 - _scaleFactor);
+    //   var currTrans = height * (1-currentScale) / 2;
+    //   matrix = Matrix4.diagonal3Values(1, currentScale, 1);
+    //   matrix = Matrix4.diagonal3Values(1, currentScale, 1)..setTranslationRaw(0, currentScale, 0);
 
-    }else if(index == _currentPageValue.floor() + 1) {
-      var currentScale = 1-(_currentPageValue - index) + (1 - _scaleFactor);
-      var currTrans = height * (1-currentScale) / 2;
-      matrix = Matrix4.diagonal3Values(1, currentScale, 1);
-      matrix = Matrix4.diagonal3Values(1, currentScale, 1)..setTranslationRaw(0, currentScale, 0);
+    // }else if(index == _currentPageValue.floor() + 1) {
+    //   var currentScale = 1-(_currentPageValue - index) + (1 - _scaleFactor);
+    //   var currTrans = height * (1-currentScale) / 2;
+    //   matrix = Matrix4.diagonal3Values(1, currentScale, 1);
+    //   matrix = Matrix4.diagonal3Values(1, currentScale, 1)..setTranslationRaw(0, currentScale, 0);
 
-    } else {
-      var currentScale = 0.6;
-      matrix = Matrix4.diagonal3Values(1, currentScale, 1)..setTranslationRaw(0, height * (1 - _scaleFactor)/2, 1);
+    // } else {
+    //   var currentScale = 0.6;
+    //   matrix = Matrix4.diagonal3Values(1, currentScale, 1)..setTranslationRaw(0, height * (1 - _scaleFactor)/2, 1);
 
-    }
+    // }
+     var bro =  brochettes[index];
 
     return  GestureDetector(
+     
       onTap: () {
-        Get.toNamed(RouteHelper.popularFood);
+        Get.toNamed(RouteHelper.recommendedFood,
+         arguments: {
+            "category": brochettes[index]["category"].toString(),
+            "name": bro.name,
+            "img": brochettes[index]["img"].toString(),
+            "description": brochettes[index]["description"].toString(),
+            "price": brochettes[index]["price"].toString(),
+            "piece": brochettes[index]["piece"].toString(),
+            "stars": brochettes[index]["stars"],
+          }
+        );
       },
       child: Stack(
         children: [
@@ -298,12 +253,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage(
-                  "assets/images/sucrés.png",
+                   brochettes[index]["img"],
                 )
               ),
             ),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -311,10 +266,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               margin: EdgeInsets.only(left: Dimensions.width30, right: Dimensions.width30, bottom: Dimensions.height30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius30),
-                color: Color(0xFFe8e8e8),
-                boxShadow: [
+                color: const Color(0xFFe8e8e8),
+                boxShadow: const [ 
                   BoxShadow(
-                    color: Color(0xFFe8e8e8),
+                    color:  Color(0xFFe8e8e8),
                     blurRadius: 5,
                     offset: Offset(0, 5),
                   ),
@@ -331,7 +286,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ),
               child: Container(
                 padding: EdgeInsets.only(top: Dimensions.height15, left: Dimensions.height15, right: Dimensions.height15),
-                child: AppColumn(text: "Brochettes de porc"),
+                child: AppColumn(nameText: brochettes[index]["name"], priceText: brochettes[index]["price"], stars: brochettes[index]["stars"]),
               ),
             ),
           ),

@@ -1,0 +1,74 @@
+[
+    {
+        "category": "Brochettes",
+        "name":"Brochettes de poulet",
+        "img": "images/poulet.png",
+        "description":"Une brochette, Enfilés des morceaux de viande (bœuf, porc, volaille, canard, etc.), de poisson, de fruits, de légumes ou de fruits de mer et destinés à être cuits à la broche, c’est-à-dire au-dessus des braises du feu ou au barbecue. Afin de donner davantage de saveur et de parfum à la préparation, il est courant de faire mariner la viande avant la cuisson, ainsi que d’intercaler entre les pièces de viande des morceaux de lard, de légumes (poivron, oignon, tomate, etc.) et de champignons.",
+        "price": 600,
+        "piece": 25,
+        "stars": 2
+    },
+    {
+        "category": "Brochettes",
+        "name":"Brochettes de porc",
+        "img": "images/porc.png",
+        "description":"Une brochette, Enfilés des morceaux de viande (bœuf, porc, volaille, canard, etc.), de poisson, de fruits, de légumes ou de fruits de mer et destinés à être cuits à la broche, c’est-à-dire au-dessus des braises du feu ou au barbecue. Afin de donner davantage de saveur et de parfum à la préparation, il est courant de faire mariner la viande avant la cuisson, ainsi que d’intercaler entre les pièces de viande des morceaux de lard, de légumes (poivron, oignon, tomate, etc.) et de champignons.",
+        "price": 500,
+        "piece": 25,
+        "stars": 4
+    },
+    {
+        "category": "Brochettes",
+        "name":"Brochettes de rognon",
+        "img": "images/brochette.png",
+        "description":"Une brochette, Enfilés des morceaux de viande (bœuf, porc, volaille, canard, etc.), de poisson, de fruits, de légumes ou de fruits de mer et destinés à être cuits à la broche, c’est-à-dire au-dessus des braises du feu ou au barbecue. Afin de donner davantage de saveur et de parfum à la préparation, il est courant de faire mariner la viande avant la cuisson, ainsi que d’intercaler entre les pièces de viande des morceaux de lard, de légumes (poivron, oignon, tomate, etc.) et de champignons.",
+        "price": 600,
+        "piece": 25,
+        "stars": 3
+    },
+    {
+        "category": "Brochettes",
+        "name":"Brochettes de gésiers",
+        "img": "images/brochette.png",
+        "description":"Une brochette, Enfilés des morceaux de viande (bœuf, porc, volaille, canard, etc.), de poisson, de fruits, de légumes ou de fruits de mer et destinés à être cuits à la broche, c’est-à-dire au-dessus des braises du feu ou au barbecue. Afin de donner davantage de saveur et de parfum à la préparation, il est courant de faire mariner la viande avant la cuisson, ainsi que d’intercaler entre les pièces de viande des morceaux de lard, de légumes (poivron, oignon, tomate, etc.) et de champignons.",
+        "price": 500,
+        "piece": 25,
+        "stars": 1
+    },
+    {
+        "category": "Brochettes",
+        "name":"Brochettes de filets poisson",
+        "img": "images/brochette.png",
+        "description":"Une brochette, Enfilés des morceaux de viande (bœuf, porc, volaille, canard, etc.), de poisson, de fruits, de légumes ou de fruits de mer et destinés à être cuits à la broche, c’est-à-dire au-dessus des braises du feu ou au barbecue. Afin de donner davantage de saveur et de parfum à la préparation, il est courant de faire mariner la viande avant la cuisson, ainsi que d’intercaler entre les pièces de viande des morceaux de lard, de légumes (poivron, oignon, tomate, etc.) et de champignons.",
+        "price": 800,
+        "piece": 25,
+        "stars": 4
+    },
+    {
+        "category": "Brochettes",
+        "name":"Brochettes de gamba",
+        "img": "images/brochette.png",
+        "description":"Une brochette, Enfilés des morceaux de viande (bœuf, porc, volaille, canard, etc.), de poisson, de fruits, de légumes ou de fruits de mer et destinés à être cuits à la broche, c’est-à-dire au-dessus des braises du feu ou au barbecue. Afin de donner davantage de saveur et de parfum à la préparation, il est courant de faire mariner la viande avant la cuisson, ainsi que d’intercaler entre les pièces de viande des morceaux de lard, de légumes (poivron, oignon, tomate, etc.) et de champignons.",
+        "price": 1500,
+        "piece": 25,
+        "stars": 4
+    },
+    {
+        "category": "Brochettes",
+        "name":"Brochettes de  kebab ( viande hachée )",
+        "img": "images/brochette.png",
+        "description":"Une brochette, Enfilés des morceaux de viande (bœuf, porc, volaille, canard, etc.), de poisson, de fruits, de légumes ou de fruits de mer et destinés à être cuits à la broche, c’est-à-dire au-dessus des braises du feu ou au barbecue. Afin de donner davantage de saveur et de parfum à la préparation, il est courant de faire mariner la viande avant la cuisson, ainsi que d’intercaler entre les pièces de viande des morceaux de lard, de légumes (poivron, oignon, tomate, etc.) et de champignons.",
+        "price": 300,
+        "piece": 25,
+        "stars": 2
+    },
+    {
+        "category": "Brochettes",
+        "name":"Brochettes de  fruits",
+        "img": "images/brochette.png",
+        "description":"Une brochette, Enfilés des morceaux de viande (bœuf, porc, volaille, canard, etc.), de poisson, de fruits, de légumes ou de fruits de mer et destinés à être cuits à la broche, c’est-à-dire au-dessus des braises du feu ou au barbecue. Afin de donner davantage de saveur et de parfum à la préparation, il est courant de faire mariner la viande avant la cuisson, ainsi que d’intercaler entre les pièces de viande des morceaux de lard, de légumes (poivron, oignon, tomate, etc.) et de champignons.",
+        "price": 400,
+        "piece": 25,
+        "stars": 4
+    }
+]

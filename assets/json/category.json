@@ -1,26 +1,26 @@
 {
-    "id" : 1,
-    "categoryName" : "entrée en vérrines",
-    "logo" : "img",
-    "pieces" : 25,
-    "text" : "lorem ipsum dolore sanctum",
-    "products" : [
-      {
-        "id" : 1,
-        "name" : "verrine de saumon fumé au fromage blanc",
-        "price" : 2000.0,
-        "logo" : "img1",
-        "description" : "lorem ipsum dolore sanctum",
-        "stars" : 5
-      },
-      {
-        "id" : 2,
-        "name" : "verrine de taboulé tricolore",
-        "price" : 700.0,
-        "logo" : "img2",
-        "description" : "lorem ipsum d olore sanctum scum",
-        "stars" : 5
-      }
-    ]
-   
-  }
+  "id" : 1,
+  "categoryName" : "entrée en vérrines",
+  "logo" : "img",
+  "pieces" : 25,
+  "text" : "lorem ipsum dolore sanctum",
+  "products" : [
+    {
+      "id" : 1,
+      "name" : "verrine de saumon fumé au fromage blanc",
+      "price" : 2000.0,
+      "logo" : "img1",
+      "description" : "lorem ipsum dolore sanctum",
+      "stars" : 5
+    },
+    {
+      "id" : 2,
+      "name" : "verrine de taboulé tricolore",
+      "price" : 700.0,
+      "logo" : "img2",
+      "description" : "lorem ipsum d olore sanctum scum",
+      "stars" : 5
+    }
+  ]
+  
+}
